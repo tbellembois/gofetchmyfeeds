@@ -1,17 +1,31 @@
 # GoFetchMyFeeds
 
-Work in progress...
+```bash
+    $ go get -u github.com/tbellembois/gofetchmyfeeds
+```
 
-`configuration.toml` sample:
+You can also download a binary in the [releases](https://github.com/tbellembois/gofetchmyfeeds/releases) section.
+
+Create a `configuration.toml`:
 ```
 [mail]
     host = "smtp.gmail.com"
     port = 587
-    recipient = "mybox@gmail.com"
-    user = "mybox@gmail.com"
+    recipient = "foo@gmail.com"
+    user = "foo@gmail.com"
     password = "supersecret"
 
 [rss]
-	feeds = [ [ "https://www.linux.com/feeds/tutorials/rss", "inbox" ],
-            ]
+        feeds = [ 
+                [ "http://www.howtoforge.com/rss/linux/debian.rss", "-HOWTOFORGE-" ],
+                [ "http://www.futura-sciences.com/rss/high-tech/dossiers.xml", "-FUTURA-" ],
+                [ "http://www.futura-sciences.com/rss/high-tech/actualites.xml", "-FUTURA-" ],
+                ['http://downloads.bbc.co.uk/podcasts/worldservice/scia/rss.xml', '-BBC-'],
+                ['http://downloads.bbc.co.uk/podcasts/worldservice/docarchive/rss.xml', '-BBC-'],
+                ]
+```
+
+Run the program:
+```
+    $ gofetchmyfeeds [-logfile /path/to/gofetchmyfeeds.log] [-debug]
 ```
