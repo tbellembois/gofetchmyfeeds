@@ -24,6 +24,7 @@ _testmain.go
 *.prof
 
 # Custom locations
+build
 gofetchmyfeeds
 seen.db
 configuration.toml

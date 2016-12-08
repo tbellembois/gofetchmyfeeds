@@ -29,3 +29,10 @@ Run the program:
 ```
     $ gofetchmyfeeds [-logfile /path/to/gofetchmyfeeds.log] [-debug]
 ```
+
+Cron configuration sample:
+```
+*/90 * * * *    myuser     /usr/local/gofetchmyfeeds -logfile /var/log/cron/gofetchmyfeeds.log 2>&1
+```
+
+Thanks to [Sébastien Binet](https://github.com/sbinet) for the help.
