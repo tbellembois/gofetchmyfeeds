@@ -142,6 +142,12 @@ func main() {
 	if mailsender, err = dial.Dial(); err != nil {
 		log.Fatal("can not open connection to mail server:", err)
 	}
+	defer func() {
+		err = mailsender.Close()
+		if err != nil {
+			log.Error("error closing the mailsender connection:", err)
+		}
+	}()
 
 	// Gathering the feeds from the configuration file.
 	for _, fconfig := range conf.RssConfig.Feeds {
