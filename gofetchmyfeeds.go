@@ -38,7 +38,7 @@ type mailConfig struct {
 	Recipient string `toml:"recipient,omitempty"`
 }
 type rssConfig struct {
-	Feeds [][]string `toml:feeds`
+	Feeds [][]string `toml:"feeds"`
 }
 type config struct {
 	MailConfig mailConfig `toml:"mail"`
