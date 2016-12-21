@@ -29,7 +29,7 @@ const (
 	dMailRecipient = "root"
 )
 
-// TOML configuration structures
+// TOML configuration structures.
 type mailConfig struct {
 	Host      string `toml:"host,omitempty"`
 	Port      int    `toml:"port,omitempty"`
@@ -45,7 +45,7 @@ type config struct {
 	RssConfig  rssConfig  `toml:"rss"`
 }
 
-// Mail body builder
+// Mail body builder.
 func buildBody(i *rss.Item) string {
 	var t string
 	b := `
@@ -61,20 +61,20 @@ func buildBody(i *rss.Item) string {
 	return fmt.Sprintf(b, i.Link, t)
 }
 
-// Mail sender
+// Mail sender.
 func sendMail(i *rss.Item, ftag string) error {
 	m := gomail.NewMessage()
 	m.SetHeader("From", "gofetchmyfeeds@nowhere.com")
 	m.SetAddressHeader("To", conf.MailConfig.Recipient, conf.MailConfig.Recipient)
 	m.SetHeader("Subject", ftag+" "+i.Title)
-	m.SetBody("text/text", buildBody(i))
+	m.SetBody("text/plain", buildBody(i))
 	if err = gomail.Send(mailsender, m); err != nil {
 		return err
 	}
 	return nil
 }
 
-// Store the item to the database
+// Store the item to the database.
 func markSeen(i *rss.Item) error {
 	// We use the item Link as a key.
 	// No need for a value.
